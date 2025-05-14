@@ -15,12 +15,9 @@ function parseUrl($url) {
     $path = strtolower(trim($path));
 
     $host = $parsedUrl['host'];
-    $host2 = preg_replace('/^www\./', '', $host);
+    $host = preg_replace('/^www\./', '', $host);
 
-    $ip = gethostbyname($host);
-    if (!($ip !== $host)) {
-        $host = $host2;
-    }
+
 
     return array('domain' => $domain, 'path' => $path);
 }

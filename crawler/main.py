@@ -7,11 +7,11 @@ import random
 
 
 
-THREADS = 10
+THREADS = 100
 MAX_TEXT_LENGTH = 500
 
-def crawl(url):
-    print(f"URL: {url}")
+def crawl(url, t_id=0):
+    print(f"WeBoB #{t_id} is crawling: {url}")
     try:
         response = requests.get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -38,13 +38,13 @@ def crawl(url):
 
     api.addSite(url, contents, links)
     url = api.getJob()
-    crawl(url)
+    crawl(url, t_id)
 
 if __name__ == "__main__":
     
     print("Starting WeBoB...")
 
     for i in range(THREADS):
-        t = threading.Thread(target=crawl, args=(api.getJob(),))
+        t = threading.Thread(target=crawl, args=(api.getJob(), i,))
         t.start()
         time.sleep(random.uniform(0.100, 0.300))
