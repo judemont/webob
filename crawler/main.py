@@ -7,7 +7,7 @@ import random
 
 
 
-THREADS = 100
+THREADS = 10
 MAX_TEXT_LENGTH = 500
 
 def crawl(url):
