@@ -2,14 +2,15 @@
 include_once(dirname(__FILE__) . "/database.php");
 
 
-function encodeText($text) {
+function search($query) {
+    $db = new Database();
+
+    $query = strtolower(preg_replace('/[^a-zA-Z0-9]/', ' ', $query));
     $words = explode(" ", $text);
     $reuslt = array();
 
     $db = new Database();
     foreach ($words as $str) {
-        $word = strtolower(preg_replace('/[^a-zA-Z]/', '', $str));
-
         $inDb = $db->select("SELECT * FROM webob_dict WHERE word = '$word'");
 
         if (count($inDb) <= 0) {
@@ -22,5 +23,4 @@ function encodeText($text) {
 
     }   
 
-    return $reuslt;
 }
