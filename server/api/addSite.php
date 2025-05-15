@@ -70,6 +70,16 @@ if (count($pageInDb) > 0) {
     $pageId = $db->getLastInsertedID();
 }
 
+$db -> query("UPDATE webob_sites
+UPDATE webob_sites
+SET score = (
+    SELECT AVG(score)
+    FROM webob_pages
+    WHERE webob_pages.site_ID = webob_sites.ID
+)
+WHERE ID = $siteId;
+
+");
 
 
 
