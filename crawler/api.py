@@ -27,4 +27,13 @@ def addSite(url, contents, links) :
 
     requests.post(f"{API_BASE_URL}/addSite.php", data=data)
     
+def removeSite(url) :
+
+    data = {
+        "password": API_PASSWORD,
+        "url": url
+    }
+
+    requests.post(f"{API_BASE_URL}/removeSite.php", data=data)
+    
     
