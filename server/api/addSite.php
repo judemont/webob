@@ -63,8 +63,12 @@ if (count($pageInDb) > 0) {
     }else {
         $updateContent = false;
     }
+
+    if (true) {
+        $db->query("UPDATE webob_pages SET score = score + 1 WHERE ID = '$pageId'");
+    }
 } else {
-    $db->query("INSERT INTO webob_pages (site_ID, page) VALUES ('$siteId', '$path')");
+    $db->query("INSERT INTO webob_pages (site_ID, page, score) VALUES ('$siteId', '$path', 1)");
     $pageId = $db->getLastInsertedID();
 }
 
