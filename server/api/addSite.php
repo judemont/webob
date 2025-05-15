@@ -116,7 +116,7 @@ foreach ($links as $link) {
 
     if (count($linkInQueue) > 0) {
         $linkId = $linkInQueue[0]['ID'];
-        $linkPriority = $linkInQueue[0]['ID'] + 1;
+        $linkPriority = $linkInQueue[0]['priority'] + 1;
         
         $db->query("UPDATE webob_queue SET priority = $linkPriority WHERE ID = '$linkId'");
     } else {
